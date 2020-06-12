@@ -1,5 +1,5 @@
 const express = require('express');
-const DataService = require('../service/dataService');
+const DataService = require('../services/dataService');
 function dataAPI(app){
 
     //inicializar el enrutador para la API y el servicio
