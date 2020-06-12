@@ -76,4 +76,4 @@ yarn-error.log
 dist/
 
 #bundle
-scr/server/public
+src/server/public

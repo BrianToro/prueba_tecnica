@@ -7,11 +7,13 @@ const { config } = require('./src/server/config')
 const isDev = (config.env === 'development');
 const entry = ['./src/frontend/index.js'];
 
+if (isDev) entry.push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true');
+
 module.exports = {
   entry: entry,
   mode: process.env.ENV,
   output: {
-    path: path.resolve(__dirname, 'src/server/public'),
+    path: isDev ? '/' : path.resolve(__dirname, 'src/server/public'),
     filename: isDev ?  'assets/app.js' : 'assets/app-[hash].js',
     publicPath: '/',
   },

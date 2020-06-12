@@ -1,6 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
 
 //Componentes
+import Table from '../components/Table';
+import Row from '../components/Row';
+import Column from '../components/Column';
 
 //redux
 import { connect } from 'react-redux';
@@ -8,10 +11,18 @@ import { connect } from 'react-redux';
 //Css
 import "../assets/styles/App.scss";
 
-const List = ({ mylist, trends, originals }) => {
+const List = ({ }) => {
   return (
     <Fragment>
-      <h1>Hola mundo</h1>  
+        <Table>
+          <Row>
+            <Column/>
+            <Column/>
+            <Column/>
+            <Column/>
+            <Column/>
+          </Row>
+        </Table>
     </Fragment>
   );
 };

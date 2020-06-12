@@ -5,7 +5,9 @@ import "../assets/styles/components/Header.scss";
 const Header = (props) => {
     return (
         <header>
-            <h1>header</h1>
+            <nav className="navbar">
+                <span className="navbar-title">Prueba tecnica</span>
+            </nav>
         </header>
     );
 };
