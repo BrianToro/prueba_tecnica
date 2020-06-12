@@ -1,9 +1,13 @@
 import React from 'react';
 import '../assets/styles/components/Row.scss';
 
-const Row = ({ children }) => (
+const Row = ({ _id, OpportunityNumber, OpportunityTitle, AgencyCode, PostDate, CloseDate }) => (
     <tr>
-        { children }
+        <td key={_id + "-1"}>{OpportunityNumber}</td>
+        <td key={_id + "-2"}>{OpportunityTitle}</td>
+        <td key={_id + "-3"}>{AgencyCode}</td>
+        <td key={_id + "-4"}>{PostDate}</td>
+        <td key={_id + "-5"}>{(CloseDate)? CloseDate : "N/A"}</td>
     </tr>
 );
 

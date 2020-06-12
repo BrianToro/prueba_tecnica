@@ -11,7 +11,7 @@ const routes = [
     },
     {
         exact: true,
-        path: "/player/:id",
+        path: "/grant",
         component: Details,
     },
     {

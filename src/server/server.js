@@ -1,20 +1,21 @@
-import express from 'express';
-import webpack from 'webpack';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { renderRoutes } from 'react-router-config';
-import { StaticRouter } from 'react-router-dom';
-import helmet from 'helmet';
-import serverRoutes from '../frontend/routes/serverRoutes';
-import reducer from '../frontend/reducers';
-import initialState from '../frontend/initialState';
-import getManifest from './getManifest';
-import { config } from './config';
-import { dataAPI } from './routes/index';
+import express from "express";
+import webpack from "webpack";
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import { renderRoutes } from "react-router-config";
+import { StaticRouter } from "react-router-dom";
+import helmet from "helmet";
+import axios from "axios";
+import serverRoutes from "../frontend/routes/serverRoutes";
+import reducer from "../frontend/reducers";
+import getManifest from "./getManifest";
+import { config } from "./config";
+import { dataAPI } from "./routes/index";
 
 const app = express();
+app.use(express.json());
 const { env, port } = config;
 
 if (env === "development") {
@@ -29,20 +30,20 @@ if (env === "development") {
     app.use(webpackHotMiddleware(compiler));
 } else {
     app.use((req, res, next) => {
-        if (!req.hashManifest)req.hashManifest = getManifest();
+        if (!req.hashManifest) req.hashManifest = getManifest();
         next();
     });
     app.use(express.static(`${__dirname}/public`));
     app.use(helmet());
     app.use(helmet.permittedCrossDomainPolicies());
-    app.disable('x-powered-by');
+    app.disable("x-powered-by");
 }
 
 const setResponse = (html, preloadedState, manifest) => {
-    const mainStyles = manifest ? manifest['main.css'] : 'assets/app.css';
-    const mainBuild = manifest ? manifest['main.js'] : 'assets/app.js'
+    const mainStyles = manifest ? manifest["main.css"] : "assets/app.css";
+    const mainBuild = manifest ? manifest["main.js"] : "assets/app.js";
 
-    return (`
+    return `
             <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -54,14 +55,30 @@ const setResponse = (html, preloadedState, manifest) => {
         <body>
             <div id="app">${html}</div>
             <script>
-                window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+                window.__PRELOADED_STATE__ = ${JSON.stringify(
+                    preloadedState
+                ).replace(/</g, "\\u003c")}
             </script>
             <script src=${mainBuild} type="text/javascript"></script>
         </body>
-        </html>`);
+        </html>`;
 };
 
-const rederApp = (req, res) => {
+const rederApp = async (req, res) => {
+    let initialState;
+    try {
+        let firstPage = await axios({
+            url: "http://localhost:4000/api/data/page/1",
+            method: "get",
+        });
+        initialState = {
+            ...firstPage.data,
+            currentPage: 1
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
     const store = createStore(reducer, initialState);
     const preloadedState = store.getState();
     const html = renderToString(
@@ -74,9 +91,9 @@ const rederApp = (req, res) => {
     res.send(setResponse(html, preloadedState, req.hashManifest));
 };
 
-app.get("/", rederApp);
-
 dataAPI(app);
+
+app.get("*", rederApp);
 
 app.listen(port, (err) => {
     if (err) {

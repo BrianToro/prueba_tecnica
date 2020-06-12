@@ -14,3 +14,16 @@ body {
     flex-direction: column;
     align-content: center;
   }
+
+  .pages {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+
+  .buttoms-container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+  }

@@ -4,8 +4,8 @@ import "../assets/styles/components/Details.scss";
 
 const Details = (props) => {
     return (
-        <div className="Player">
-            
+        <div className="Details">
+            <h1>Detalles</h1>
         </div>
     )
 };

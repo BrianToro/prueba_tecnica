@@ -6,7 +6,7 @@ const Header = (props) => {
     return (
         <header>
             <nav className="navbar">
-                <span className="navbar-title">Prueba tecnica</span>
+                <span className="navbar-title">Prueba Tecnica</span>
             </nav>
         </header>
     );
