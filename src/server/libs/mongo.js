@@ -29,10 +29,14 @@ class MongoLib {
     }
 
     getAll(collection, pass, limit) {
-        let numOfPass = parseInt(pass);
+        const numOfPages = (parseInt(pass) * limit) - limit;
         let limitOfReg = parseInt(limit);
         return this.connect().then((db) => {
-            return db.collection(collection).find({}, ).skip(numOfPass).limit(limitOfReg).toArray();
+            return db.collection(collection).find()
+                .project({ OpportunityTitle: 1, OpportunityNumber: 1,  AgencyCode: 1, PostDate: 1, CloseDate: 1 })
+                .skip(numOfPages)
+                .limit(limitOfReg)
+                .toArray();
         });
     }
 
