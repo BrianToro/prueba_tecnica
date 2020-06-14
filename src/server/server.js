@@ -69,7 +69,7 @@ const rederApp = async (req, res) => {
     let initialState;
     try {
         let firstPage = await axios({
-            url: "http://localhost:4000/api/data/page/1",
+            url: "https://prueba-tecnica-rn.herokuapp.com/api/data/page/1",
             method: "get",
         });
         initialState = {
