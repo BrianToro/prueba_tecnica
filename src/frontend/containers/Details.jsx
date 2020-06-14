@@ -28,7 +28,7 @@ const Details = (props) => {
             <div className="details-container">
                 <button className="back" onClick={() => props.history.goBack()}>back</button>
                 <h1>{data.OpportunityTitle}</h1>
-                <span>Numero: {data.OpportunityNumber}</span>
+                <span>Number: {data.OpportunityNumber}</span>
                 <section>
                     <h3>General Information</h3>
                     <ul>

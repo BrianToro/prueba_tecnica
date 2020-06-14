@@ -7,7 +7,7 @@ export const changePage = (payload) => ({
 
 export const nextPage = (payload) => {
     const numberOfPage = payload + 1;
-    const URL = `http://localhost:4000/api/data/page/${numberOfPage}`;
+    const URL = `/api/data/page/${numberOfPage}`;
     return (dispatch) => {
         axios({
             url: URL,
@@ -30,7 +30,7 @@ export const nextPage = (payload) => {
 export const backPage = (page) => {
     return (dispatch) => {
         const numberOfPage = page - 1;
-        const URL = `http://localhost:4000/api/data/page/${numberOfPage}`;
+        const URL = `/api/data/page/${numberOfPage}`;
         axios({
             url: URL,
             method: "get",
