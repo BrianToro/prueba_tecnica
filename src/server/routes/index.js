@@ -26,7 +26,7 @@ function dataAPI(app) {
     router.get("/:grantId", async (req, res, next) => {
         const { grantId } = req.params;
         try {
-            const data = dataService.getGrant({ grantId });
+            const data = await dataService.getGrant({ grantId });
             res.status(200).json({
                 data: data,
                 message: "Data obetenida",

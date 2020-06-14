@@ -1,31 +1,34 @@
-video {
-    object-fit: cover;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
+.details-container {
+  padding-top: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 2%;
+}
+
+.details-container h1 {
+  color: #1b6ca8;
+}
+
+.details-container li {
+  margin: 10px;
+}
+
+.back{
+  width: 80px;
+  height: 20px;
+  background-color: #1b6ca8;
+  border: none;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0; 
+  margin-left: 10px; 
   }
   
-  video:hover .Player-back {
-    display: block;
-  }
-  
-  .Player-back {
-    position: fixed;
-    top: 5px;
-    left: 5px;
-    font-size: 12px;
-  }
-  
-  .Player-back button {
-    text-decoration: none;
-    color: white;
-    background: rgba(0, 0, 0, .3);
-    padding: 5px;
-    border-radius: 5px;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
+  li::before { 
+  content: "\2022"; 
+  padding-right: 8px;
+  color: #1b6ca8; 
   }

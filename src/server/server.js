@@ -3,7 +3,8 @@ import webpack from "webpack";
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import ReduxThunk from 'redux-thunk';
 import { renderRoutes } from "react-router-config";
 import { StaticRouter } from "react-router-dom";
 import helmet from "helmet";
@@ -44,7 +45,7 @@ const setResponse = (html, preloadedState, manifest) => {
     const mainBuild = manifest ? manifest["main.js"] : "assets/app.js";
 
     return `
-            <!DOCTYPE html>
+        <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">

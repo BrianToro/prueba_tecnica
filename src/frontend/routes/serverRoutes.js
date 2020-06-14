@@ -11,7 +11,7 @@ const routes = [
     },
     {
         exact: true,
-        path: "/grant",
+        path: "/grant/:id",
         component: Details,
     },
     {

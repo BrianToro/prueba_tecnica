@@ -13,24 +13,24 @@ import { connect } from "react-redux";
 import "../assets/styles/App.scss";
 
 const List = ({ data, page }) => {
-    function renderButtoms(){
-        if(page == 1 ){
+    function renderButtoms() {
+        if (page == 1) {
             return (
                 <div className="buttoms">
-                    <Buttom key="Rigth" side=">" />
+                    <Buttom key="Rigth" direction="rigth" side=">" />
                 </div>
             );
-        } else if(page == 50){
+        } else if (page == 50) {
             return (
                 <div className="buttoms">
-                    <Buttom key="Left" side="<" />
+                    <Buttom key="Left" direction="left" side="<" />
                 </div>
             );
         } else {
             return (
                 <div className="buttoms">
-                    <Buttom key="Left" side="<" />
-                    <Buttom key="Rigth" side=">" />
+                    <Buttom key="Left" direction="left" side="<" />
+                    <Buttom key="Rigth" direction="rigth" side=">" />
                 </div>
             );
         }
@@ -45,10 +45,8 @@ const List = ({ data, page }) => {
                     ))}
                 </Table>
             )}
-            <div className="pages">Pagina: {page}</div>
-            <div className="buttoms-container">
-                {renderButtoms()}   
-            </div>
+            <div className="pages">Page: {page}</div>
+            <div className="buttoms-container">{renderButtoms()}</div>
         </Fragment>
     );
 };
