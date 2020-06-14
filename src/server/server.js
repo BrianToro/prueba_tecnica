@@ -4,7 +4,6 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-import ReduxThunk from 'redux-thunk';
 import { renderRoutes } from "react-router-config";
 import { StaticRouter } from "react-router-dom";
 import helmet from "helmet";
@@ -17,7 +16,7 @@ import { dataAPI } from "./routes/index";
 
 const app = express();
 app.use(express.json());
-const { env, port } = config;
+const { env, port, url } = config;
 
 if (env === "development") {
     console.log("Development mode");
@@ -69,7 +68,7 @@ const rederApp = async (req, res) => {
     let initialState;
     try {
         let firstPage = await axios({
-            url: "https://prueba-tecnica-rn.herokuapp.com/api/data/page/1",
+            url: `${url}/api/data/page/1`,
             method: "get",
         });
         initialState = {
