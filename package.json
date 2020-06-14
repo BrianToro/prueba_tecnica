@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "12.16.x"
+  },
   "name": "prueba_tecnica_grants",
   "version": "1.0.0",
   "description": "Prueba tecnica para LiciMatic desarrollada con React.js y Node.js",
