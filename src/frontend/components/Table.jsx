@@ -6,7 +6,6 @@ const Table = ({ children }) => (
         <table className="table">
             <thead>
                 <tr>
-                    <th>Opportunity Number</th>
                     <th>Opportunity Title</th>
                     <th>Agency</th>
                     <th>Posted Date</th>

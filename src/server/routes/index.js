@@ -35,6 +35,15 @@ function dataAPI(app) {
             next(error);
         }
     });
+
+    //recibir CSV de actualizacion
+    router.post("/upload", async (req, res, next) => {
+        const { csv } = req.body;
+        console.log(req.body);
+        res.status(200).json({
+            message: 'recibido'
+        })
+    })
 }
 
 module.exports = {

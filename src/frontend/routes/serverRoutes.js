@@ -1,6 +1,7 @@
 import List from '../containers/List';
 import Notfound from '../containers/notFound';
 import Details from '../containers/Details';
+import Upload from "../containers/Upload";
 
 
 const routes = [
@@ -8,6 +9,11 @@ const routes = [
         exact: true,
         path: "/",
         component: List,
+    },
+    {
+        exact: true,
+        path: "/upload",
+        component: Upload,
     },
     {
         exact: true,

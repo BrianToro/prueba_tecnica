@@ -1,5 +1,12 @@
-a {
-    text-decoration: none;
-    margin-left: 10px;
-    color: #1b6ca8;
+tr td{
+    cursor: pointer;
+}
+
+td {
+    padding: 20px;
+}
+
+tr:hover td{
+    background-color: #D3D2D2;
+    transform: scale(1.01);
 }

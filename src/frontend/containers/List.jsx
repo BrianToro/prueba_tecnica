@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { Link } from 'react-router-dom';
 
 //Componentes
 import Table from "../components/Table";
@@ -12,7 +13,7 @@ import { connect } from "react-redux";
 //Css
 import "../assets/styles/App.scss";
 
-const List = ({ data, page }) => {
+const List = ({ data, page, history }) => {
     function renderButtoms() {
         if (page == 1) {
             return (
@@ -38,10 +39,12 @@ const List = ({ data, page }) => {
     return (
         <Fragment>
             <Header />
+            <Link to="/upload">Upload new data (No funcional)</Link>
+            <h1>List of Opportunitys</h1>
             {data.length > 0 && (
-                <Table>
+                <Table history={history}>
                     {data.map((row) => (
-                        <Row key={row.id} {...row} />
+                        <Row history={history} key={row.id} {...row} />
                     ))}
                 </Table>
             )}

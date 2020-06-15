@@ -1,15 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../assets/styles/components/Row.scss';
+import React from "react";
+import { Redirect, Link } from "react-router-dom";
+import "../assets/styles/components/Row.scss";
 
-const Row = ({ _id, OpportunityNumber, OpportunityTitle, AgencyCode, PostDate, CloseDate }) => (
-    <tr>
-        <td key={_id + "-1"}><Link to={`/grant/${_id}`}>{OpportunityNumber}</Link></td>
-        <td key={_id + "-2"}>{OpportunityTitle}</td>
-        <td key={_id + "-3"}>{AgencyCode}</td>
-        <td key={_id + "-4"}>{PostDate}</td>
-        <td key={_id + "-5"}>{(CloseDate)? CloseDate : "N/A"}</td>
-    </tr>
-);
+const Row = (props) => {
+    return (
+        <tr onClick={() => props.history.push(`/grant/${props._id}`) }>
+            <td key={props._id + "-2"}>{props.OpportunityTitle}</td>
+            <td key={props._id + "-3"}>{props.AgencyCode}</td>
+            <td key={props._id + "-4"}>{props.PostDate}</td>
+            <td key={props._id + "-5"}>{props.CloseDate ? props.CloseDate : "N/A"}</td>
+        </tr>
+    );
+};
 
 export default Row;
